@@ -1,7 +1,8 @@
 import dayjs from "dayjs"
+import { scheduleNew } from "../../service/schedule.new"
 // Elementos do form
 const form = document.querySelector("form")
-const clientname = document.getElementById("client")
+const clientName = document.getElementById("client")
 const selectedDate = document.getElementById("date")
 
 // Data atual
@@ -25,8 +26,6 @@ form.onsubmit = (event) => {
     // Recupera o horário selecionado
     const hourSelected = document.querySelector(".hour-selected")
 
-    console.log("agendamento cadastrado");
-
     if (!hourSelected) {
       return alert("Selecione a hora.")
     }
@@ -44,6 +43,7 @@ form.onsubmit = (event) => {
       when
     });
     
+    scheduleNew({ id, name, when })
     
   } catch (error) {
     alert("Não foi possível agendar, tente novamente mais tarde.")
