@@ -10,6 +10,13 @@ export async function scheduleFetchByDay({ date }) {
 
     const dailySchedules = data.filter((schedule) => dayjs(date).isSame(schedule.when, "day"))
 
+    const dailySchedulesByHour = dailySchedules.sort((a, b) => {
+      const hourA = dayjs(a.when).hour()
+      const hourB = dayjs(b.when).hour()
+
+      return hourA - hourB
+    })
+
     return dailySchedules
   } catch (error) {
     console.log(error);
